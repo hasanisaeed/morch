@@ -1,3 +1,3 @@
-According to [architect.io](https://www.architect.io/blog/2022-06-30/microservices-orchestration-primer/#:~:text=In%20microservices%20orchestration%2C%20the%20orchestrator,distributes%20tasks%20to%20the%20microservices.): 
+Microservice orchestration architecture is a way of designing and managing applications that are composed of multiple independent services that communicate and coordinate with each other. Based on the book Microservices Patterns by Chris Richardson, microservice orchestration architecture involves using an orchestrator service that controls the workflow of inter-service interactions and handles failures and retries:
 
-> In microservices orchestration, the orchestrator is the brain, or logic component, that assigns tasks to the microservices. On obtaining a transaction request or a query, the orchestrator decides on the workflow and distributes tasks to the microservices. Each microservice is concerned only with the assigned task and not the overall workflow. 
+![image](https://github.com/hasanisaeed/microservice-orchestration/assets/20496196/def09a1d-b664-4dea-a2fd-6fb85dfcfd4d)
