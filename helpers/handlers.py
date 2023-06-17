@@ -20,14 +20,9 @@ def send_saga_response(celery_app: Celery,
                        response_queue_name: str,
                        saga_id: int,
                        payload):  # assuming payload is a @dataclass
-    return celery_app.send_task(
-        response_task_name,
-        args=[
-            saga_id,
-            payload
-        ],
-        queue=response_queue_name
-    )
+    return celery_app.send_task(response_task_name,
+                                args=[saga_id, payload],
+                                queue=response_queue_name)
 
 
 def _saga_step_handler(response_queue: Union[str, None]):

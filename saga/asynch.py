@@ -71,10 +71,8 @@ class AsyncSaga(BaseSaga):
             step_ = saga.get_async_step_by_success_task_name(celery_task.name)
             saga.on_async_step_success(step_, payload)
 
-        celery_app.task(
-            name=success_task_name(step.base_task_name),
-            bind=True
-        )(on_success_handler)
+        celery_app.task(name=success_task_name(step.base_task_name),
+                        bind=True)(on_success_handler)
 
     @classmethod
     def register_failure_handler_for_step(cls, celery_app: Celery, step: AsyncStep):
@@ -85,15 +83,12 @@ class AsyncSaga(BaseSaga):
             step_ = saga.get_async_step_by_failure_task_name(celery_task.name)
             saga.on_async_step_failure(step_, payload)
 
-        celery_app.task(
-            name=failure_task_name(step.base_task_name),
-            bind=True
-        )(on_failure_handler)
+        celery_app.task(name=failure_task_name(step.base_task_name),
+                        bind=True)(on_failure_handler)
 
     def send_message_to_other_service(self, step: AsyncStep, payload: dict, task_name: str = None):
-        task_result = self.celery_app.send_task(
-            task_name or step.base_task_name,
-            args=[self.saga_id, payload],
-            queue=step.queue)
+        task_result = self.celery_app.send_task(task_name or step.base_task_name,
+                                                args=[self.saga_id, payload],
+                                                queue=step.queue)
 
         return task_result.id
