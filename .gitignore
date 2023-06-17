@@ -1,0 +1,10 @@
+.idea
+__pycache__
+*.pyc
+SAGA
+
+# Environment
+.venv3.10
+
+# pytest
+.pytest_cache
