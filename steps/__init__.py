@@ -1,3 +1,3 @@
-from base import *
-from sync import *
-from asynch import *
+from .base import *
+from .sync import *
+from .asynch import *

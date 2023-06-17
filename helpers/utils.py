@@ -4,7 +4,9 @@ __all__ = ['success_task_name', 'failure_task_name', 'SagaErrorPayload',
 import traceback
 from dataclasses import dataclass
 
-do_nothing = lambda *args: None
+
+def do_nothing(*args):
+    return None
 
 
 def success_task_name(task_name: str):

@@ -2,7 +2,7 @@ __all__ = ['AsyncStep']
 
 from typing import Callable
 
-from base import BaseStep
+from .base import BaseStep
 from helpers.utils import do_nothing
 
 
