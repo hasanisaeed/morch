@@ -163,7 +163,6 @@ def test_run_failure_many_step():
 
 # ===========================
 class FakeCeleryApp:
-    send_task = MagicMock()
     _tasks_handlers: Dict[str, callable]
 
     def __init__(self):
