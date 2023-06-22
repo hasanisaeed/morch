@@ -1,7 +1,7 @@
 from typing import Tuple, Iterable
 from asyncapi import Message, Channel, Operation, Components
 
-from src.helpers.utils import failure_task_name, SagaErrorPayload, success_task_name
+from . import failure_task_name, SagaErrorPayload, success_task_name
 
 
 def message_to_channel(message: Message,

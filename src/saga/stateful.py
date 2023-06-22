@@ -4,9 +4,9 @@ import abc
 
 from celery import Celery, Task
 
-from src.helpers.utils import success_task_name, failure_task_name
-from src.saga.asynch import AsyncSaga
-from src.steps import BaseStep, AsyncStep
+from ..helpers import success_task_name, failure_task_name
+from .asynch import AsyncSaga
+from ..steps import BaseStep, AsyncStep
 
 
 class AbstractSagaStateRepository(abc.ABC):

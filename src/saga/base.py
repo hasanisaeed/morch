@@ -5,8 +5,8 @@ from typing import List, Union
 
 from dataclasses import asdict
 
-from src.helpers.utils import format_exception_as_python_does, serialize_saga_error
-from src.steps import BaseStep, SyncStep
+from ..helpers import format_exception_as_python_does, serialize_saga_error
+from ..steps import BaseStep, SyncStep
 
 logger = logging.getLogger(__name__)
 

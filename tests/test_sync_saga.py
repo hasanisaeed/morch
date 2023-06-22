@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.saga.base import BaseSaga
-from src.steps import SyncStep
+from src import SyncStep, BaseSaga
 
 
 def test_run_success():

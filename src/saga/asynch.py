@@ -2,9 +2,9 @@ import logging
 from typing import List
 from celery import Celery, Task
 
-from src.helpers.utils import success_task_name, failure_task_name
-from src.saga.base import BaseSaga
-from src.steps import AsyncStep
+from ..helpers.utils import success_task_name, failure_task_name
+from .base import BaseSaga
+from ..steps import AsyncStep
 
 logger = logging.getLogger(__name__)
 

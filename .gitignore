@@ -8,3 +8,8 @@ SAGA
 
 # pytest
 .pytest_cache
+
+# publish
+dist
+build
+src/micro_orch.egg-info
