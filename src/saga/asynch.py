@@ -2,10 +2,9 @@ import logging
 from typing import List
 from celery import Celery, Task
 
-from helpers.utils import failure_task_name, success_task_name
-from saga.base import BaseSaga
-
-from steps import AsyncStep
+from src.helpers.utils import success_task_name, failure_task_name
+from src.saga.base import BaseSaga
+from src.steps import AsyncStep
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +17,7 @@ class AsyncSaga(BaseSaga):
         super().__init__(*args, **kwargs)
 
     def on_async_step_success(self, step: AsyncStep, payload: dict):
-        logger.info(f'Saga {self.saga_id}: '
+        logger.info(f'>> Saga {self.saga_id}: '
                     f'running on_success for "{step.name}" step')
 
         step.on_success(step, payload)
@@ -30,7 +29,7 @@ class AsyncSaga(BaseSaga):
             self.execute(next_step)
 
     def on_async_step_failure(self, step: AsyncStep, payload: dict):
-        logger.info(f'Saga {self.saga_id}: '
+        logger.info(f'>> Saga {self.saga_id}: '
                     f'running on_failure for "{step.name}" step')
 
         step.on_failure(step, payload)
@@ -86,7 +85,11 @@ class AsyncSaga(BaseSaga):
         celery_app.task(name=failure_task_name(step.base_task_name),
                         bind=True)(on_failure_handler)
 
-    def send_message_to_other_service(self, step: AsyncStep, payload: dict, task_name: str = None):
+    def send_message_to_other_service(self,
+                                      step: AsyncStep,
+                                      payload: dict,
+                                      task_name: str = None):
+
         task_result = self.celery_app.send_task(task_name or step.base_task_name,
                                                 args=[self.saga_id, payload],
                                                 queue=step.queue)

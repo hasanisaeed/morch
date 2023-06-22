@@ -10,7 +10,7 @@ from typing import Union
 import celery
 from celery import Celery, Task
 
-from helpers.utils import success_task_name, serialize_saga_error, failure_task_name
+from src.helpers.utils import success_task_name, serialize_saga_error, failure_task_name
 
 logger = logging.getLogger(__name__)
 

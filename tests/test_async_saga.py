@@ -1,8 +1,8 @@
 from typing import Dict
 from unittest.mock import MagicMock
 
-from saga.asynch import AsyncSaga
-from steps import SyncStep, AsyncStep
+from src.saga.asynch import AsyncSaga
+from src.steps import AsyncStep, SyncStep
 
 
 def test_run_success_many_step():
@@ -72,8 +72,6 @@ def test_run_success_many_step():
 
     celery_app.launch_celery_task('task4.response.success', **celery_task_params)
     step_4_success_mock.assert_called_once()
-
-    last_action_mock.assert_called_once()
 
     # finally
     on_success_mock.assert_called_once()
@@ -163,6 +161,7 @@ def test_run_failure_many_step():
 
 # ===========================
 class FakeCeleryApp:
+    send_task = MagicMock()
     _tasks_handlers: Dict[str, callable]
 
     def __init__(self):

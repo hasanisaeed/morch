@@ -3,7 +3,7 @@ __all__ = ['BaseStep']
 from typing import Callable
 from abc import ABC
 
-from helpers.utils import do_nothing
+from src.helpers.utils import do_nothing
 
 
 class BaseStep(ABC):
