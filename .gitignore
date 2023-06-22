@@ -8,3 +8,7 @@ SAGA
 
 # pytest
 .pytest_cache
+
+# publish
+dist
+morch.egg-info

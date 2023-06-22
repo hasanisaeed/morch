@@ -2,8 +2,8 @@ __all__ = ['AsyncStep']
 
 from typing import Callable
 
-from .base import BaseStep
-from helpers.utils import do_nothing
+from ..helpers import do_nothing
+from ..steps import BaseStep
 
 
 class AsyncStep(BaseStep):

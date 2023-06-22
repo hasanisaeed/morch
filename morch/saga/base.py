@@ -1,12 +1,12 @@
-__all__ = ['BaseSaga', 'BaseStep']
+__all__ = ['BaseSaga', ]
 
 import logging
 from typing import List, Union
 
 from dataclasses import asdict
 
-from helpers.utils import serialize_saga_error, format_exception_as_python_does
-from steps import BaseStep, SyncStep
+from ..helpers import format_exception_as_python_does, serialize_saga_error
+from ..steps import BaseStep, SyncStep
 
 logger = logging.getLogger(__name__)
 
@@ -61,11 +61,11 @@ class BaseSaga:
         return step == self.steps[-1]
 
     def run_step(self, step: BaseStep):
-        logger.info(f'Saga {self.saga_id}: running "{step.name}" step')
+        logger.info(f'>> Saga {self.saga_id}: running "{step.name}" step')
         step.action(step)
 
     def compensate_step(self, step: BaseStep, initial_failure_payload: dict):
-        logger.info(f'Saga {self.saga_id}: '
+        logger.info(f'>> Saga {self.saga_id}: '
                     f'compensating "{step.name}" step')
         step.compensation(step)
 
@@ -122,13 +122,13 @@ class BaseSaga:
         This method runs when saga is fully completed with success
         """
 
-        logger.info(f'Saga {self.saga_id} succeeded')
+        logger.info(f'>> Saga {self.saga_id} succeeded')
 
     def on_saga_failure(self, failed_step: BaseStep, initial_failure_payload: dict):
         """
         This method runs when saga is failed (after all compensations finished)
         """
-        logger.info(f'Saga {self.saga_id} failed on "{failed_step.name}" step. \n'
+        logger.info(f'>> Saga {self.saga_id} failed on "{failed_step.name}" step. \n'
                     f'Failure details: {initial_failure_payload}')
 
     def on_compensation_failure(self, initially_failed_step: BaseStep,
@@ -139,6 +139,6 @@ class BaseSaga:
         This method runs when compensation step unexpectedly failed,
           i.e. saga wasn't able to successfully rollback
         """
-        logger.info(f'Saga {self.saga_id} failed while compensating "{compensation_failed_step.name}" step.\n'
+        logger.info(f'>> Saga {self.saga_id} failed while compensating "{compensation_failed_step.name}" step.\n'
                     f'Error details: {format_exception_as_python_does(compensation_exception)} \n \n'
                     f'Initial failure details: {initial_failure_payload}')
