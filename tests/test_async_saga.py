@@ -1,8 +1,7 @@
 from typing import Dict
 from unittest.mock import MagicMock
 
-from src import SyncStep, AsyncStep
-from src.saga import AsyncSaga
+from morch import AsyncSaga, SyncStep, AsyncStep
 
 
 def test_run_success_many_step():

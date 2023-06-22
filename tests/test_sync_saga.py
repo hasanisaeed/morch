@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src import SyncStep, BaseSaga
+from morch import SyncStep, BaseSaga
 
 
 def test_run_success():

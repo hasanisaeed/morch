@@ -11,5 +11,4 @@ SAGA
 
 # publish
 dist
-build
-src/micro_orch.egg-info
+morch.egg-info
