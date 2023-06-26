@@ -1,7 +1,10 @@
 ## Microservice Orchestration (morch)
 
 ### Installation:
-> pip install morch
+
+```bash
+pip install morch
+```
 
 ### Usage:
     coming soon...
