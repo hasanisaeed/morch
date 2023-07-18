@@ -12,7 +12,7 @@ setuptools.setup(name="morch",
                  install_requires=["asyncapi==0.14.1",
                                    "uvicorn==0.22.0",
                                    "typer==0.9.0",
-                                   "PyYAML==6.0",
+                                   "PyYAML==6.0.1",
                                    "Jinja2==3.1.2",
                                    "apidaora==0.28.0",
                                    "markdown==3.4.3"
