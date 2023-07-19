@@ -35,7 +35,7 @@ class SagaStateRepository(AbstractSagaStateRepository):
                                                                 )
 
     def get_saga_payload(self, saga_state: object) -> dict:
-        return saga_state.saga.payload
+        return saga_state.payload
 
 
 def _get_saga_status(status):
