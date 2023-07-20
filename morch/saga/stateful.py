@@ -23,7 +23,11 @@ class AbstractSagaStateRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def update(self, saga_id: int, **fields_to_update: str) -> object:
+    def update(self, saga_id: int, **fields_to_update: dict) -> object:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def create(self, **fields_to_create: dict) -> object:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -32,6 +36,10 @@ class AbstractSagaStateRepository(abc.ABC):
 
     @abc.abstractmethod
     def get_saga_payload(self, saga_state: object) -> dict:
+        pass
+
+    @abc.abstractmethod
+    def get_last_saga_state_payload(self, saga_id: int) -> dict:
         pass
 
 
