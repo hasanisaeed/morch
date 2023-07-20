@@ -4,6 +4,7 @@ from morch import SyncStep, BaseSaga
 
 
 def test_run_success():
+    
     start_step_action_mock = MagicMock()
     start_step_compensation_mock = MagicMock()
 
