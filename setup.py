@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(name="morch",
-                 version="1.0.1",
+                 version="1.0.2",
                  author="Saeed Hasani Borzadaran",
                  author_email="hassanisaeed19@gmail.com",
                  description="SAGA Python Microservice Orchestrator",
