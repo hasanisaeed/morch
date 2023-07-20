@@ -39,9 +39,10 @@ class SagaStateRepository(AbstractSagaStateRepository):
 
     def get_saga_payload(self, saga_state) -> dict:
         return saga_state.payload
-
+        
     def get_last_saga_state_payload(self, saga_id: int) -> dict:
-        last_saga_state = self.state.objects.filter(saga_id=saga_id).last()
+        saga = self.state.objects.filter(pk=saga_id).first().saga
+        last_saga_state = self.state.objects.filter(saga=saga).last()
         return last_saga_state.payload if last_saga_state else dict()
 
 
