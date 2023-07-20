@@ -25,8 +25,11 @@ class SagaStateRepository(AbstractSagaStateRepository):
         self.saga.objects.filter(pk=saga_state_filter.first().saga.id).update(status=_get_saga_status(status))
         return saga_state_filter.update(status=status)
 
-    def update(self, saga_state_id: int, **fields_to_update: str) -> object:
+    def update(self, saga_state_id: int, **fields_to_update: dict) -> object:
         return self.get_saga_state_filter(saga_state_id).update(**fields_to_update)
+
+    def create(self, **fields_to_create: dict) -> None:
+        self.state.objects.create(**fields_to_create)
 
     def on_step_failure(self, saga_state_id: int, failed_step: BaseStep, initial_failure_payload: dict) -> object:
         return self.get_saga_state_filter(saga_state_id).update(failed_step=failed_step.name,
@@ -34,8 +37,12 @@ class SagaStateRepository(AbstractSagaStateRepository):
                                                                 failure_details=initial_failure_payload
                                                                 )
 
-    def get_saga_payload(self, saga_state: object) -> dict:
+    def get_saga_payload(self, saga_state) -> dict:
         return saga_state.payload
+
+    def get_last_saga_state_payload(self, saga_id: int) -> dict:
+        last_saga_state = self.state.objects.filter(saga_id=saga_id).last()
+        return last_saga_state.payload if last_saga_state else dict()
 
 
 def _get_saga_status(status):
