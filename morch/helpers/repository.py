@@ -28,7 +28,7 @@ class SagaStateRepository(AbstractSagaStateRepository):
     def update(self, saga_state_id: int, **fields_to_update: dict) -> object:
         return self.get_saga_state_filter(saga_state_id).update(**fields_to_update)
 
-    def create(self, **fields_to_create: dict) -> None:
+    def create(self, fields_to_create: dict) -> None:
         self.state.objects.create(**fields_to_create)
 
     def on_step_failure(self, saga_state_id: int, failed_step: BaseStep, initial_failure_payload: dict) -> object:
