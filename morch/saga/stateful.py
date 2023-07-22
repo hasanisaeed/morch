@@ -27,7 +27,7 @@ class AbstractSagaStateRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def create(self, **fields_to_create: dict) -> object:
+    def create(self, fields_to_create: dict) -> object:
         raise NotImplementedError
 
     @abc.abstractmethod
