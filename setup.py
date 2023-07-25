@@ -15,7 +15,7 @@ setuptools.setup(name="morch",
                                    "PyYAML==6.0.1",
                                    "Jinja2==3.1.2",
                                    "apidaora==0.28.0",
-                                   "markdown==3.4.3"
+                                   "markdown==3.4.4"
                                    ],
                  project_urls={"Bug Tracker": "https://github.com/hasanisaeed/morch/issues/new",
                                },
